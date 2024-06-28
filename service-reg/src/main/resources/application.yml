@@ -9,3 +9,4 @@ eureka:
     register-with-eureka: false
   server:
     enable-self-preservation: false
+    wait-time-in-ms-when-sync-empty: 0
