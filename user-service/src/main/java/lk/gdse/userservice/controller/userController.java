@@ -27,4 +27,29 @@ public class userController {
         userService.saveUser(userDTO);
         return ResponseEntity.ok("user saved successfully");
     }
+
+    @PutMapping
+    public ResponseEntity<?> updateUser(@RequestBody UserDTO userDTO, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return ResponseEntity.badRequest().body(bindingResult.getAllErrors());
+        }
+        userService.updateUser(userDTO);
+        return ResponseEntity.ok("user updated successfully");
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<?> getUser(@PathVariable ("userId") String userId){
+        return ResponseEntity.ok(userService.getUser(userId));
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getAllUser(){
+        return ResponseEntity.ok(userService.getAllUsers());
+    }
+
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<?> deleteUser(@PathVariable ("userId") String userId){
+        userService.deleteUser(userId);
+        return ResponseEntity.ok("user deleted successfully");
+    }
 }
