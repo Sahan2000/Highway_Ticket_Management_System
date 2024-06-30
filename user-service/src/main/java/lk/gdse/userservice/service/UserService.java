@@ -10,4 +10,5 @@ public interface UserService {
     UserDTO getUser(String userId);
     List<UserDTO> getAllUsers();
     void deleteUser(String userId);
+    boolean isUserExists(String userId);
 }
