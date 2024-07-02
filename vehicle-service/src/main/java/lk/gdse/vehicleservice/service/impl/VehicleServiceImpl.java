@@ -37,12 +37,6 @@ public class VehicleServiceImpl implements VehicleService {
     public VehicleDTO getVehicle(String vehicleId) {
         return conversionData.mapTo(vehicleServiceDao.findById(vehicleId).get(), VehicleDTO.class);
     }
-
-    @Override
-    public void deleteVehicle(String vehicleId) {
-        vehicleServiceDao.deleteById(vehicleId);
-    }
-
     @Override
     public List<VehicleDTO> getAllVehicles() {
         return conversionData.mapTo(vehicleServiceDao.findAll(), VehicleDTO.class);

@@ -1,6 +1,6 @@
-package lk.gdse.vehicleservice.service.impl;
+package lk.gdse.vehicleservice.client.impl;
 
-import lk.gdse.vehicleservice.service.UserServiceClient;
+import lk.gdse.vehicleservice.client.UserServiceClient;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

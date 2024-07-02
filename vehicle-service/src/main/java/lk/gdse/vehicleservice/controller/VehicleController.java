@@ -1,9 +1,8 @@
 package lk.gdse.vehicleservice.controller;
 
 import lk.gdse.vehicleservice.dto.VehicleDTO;
-import lk.gdse.vehicleservice.service.UserServiceClient;
+import lk.gdse.vehicleservice.client.UserServiceClient;
 import lk.gdse.vehicleservice.service.VehicleService;
-import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,12 +49,6 @@ public class VehicleController {
     @GetMapping("/{vehicleId}")
     public ResponseEntity<?> getVehicle(@PathVariable ("vehicleId") String vehicleId){
         return ResponseEntity.ok(vehicleService.getVehicle(vehicleId));
-    }
-
-    @DeleteMapping("/{vehicleId}")
-    public ResponseEntity<?> deleteVehicle(@PathVariable ("vehicleId") String vehicleId){
-        vehicleService.deleteVehicle(vehicleId);
-        return ResponseEntity.ok("Vehicle deleted successfully");
     }
 
     @GetMapping
