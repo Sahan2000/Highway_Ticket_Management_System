@@ -1,8 +1,7 @@
 package lk.gdse.userservice.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lk.gdse.userservice.ENUM.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,7 +18,7 @@ public class User {
     private String userId;
     private String userName;
     private String password;
+    @Column(unique = true)
     private String email;
-    private String phone;
-    private String address;
+    private Role role;
 }

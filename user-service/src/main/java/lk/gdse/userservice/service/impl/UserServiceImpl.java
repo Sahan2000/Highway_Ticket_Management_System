@@ -46,12 +46,28 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(String userId) {
-        userServiceDao.deleteById(userId);
-    }
-
-    @Override
     public boolean isUserExists(String userId) {
         return userServiceDao.existsById(userId);
     }
+
+    @Override
+    public String login(String username, String password) {
+        User user = userServiceDao.findUserByEmail(username);
+        if(user!= null && user.getPassword().equals(password)){
+            return "User logged in successfully!";
+        }
+        return "User user name and password invalid!";
+    }
+
+    @Override
+    public String generateUserId() {
+        User user = userServiceDao.findFirstByOrderByUserIdDesc();
+        if(user == null){
+            return "U001";
+        }
+        int id = Integer.parseInt(user.getUserId().substring(1)) + 1;
+        return String.format("U%03d", id);
+    }
+
+
 }
