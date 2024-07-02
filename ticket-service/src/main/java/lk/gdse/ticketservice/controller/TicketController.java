@@ -5,7 +5,10 @@ import lk.gdse.ticketservice.dto.TicketDTO;
 import lk.gdse.ticketservice.service.TicketService;
 import lk.gdse.ticketservice.service.UserServiceClient;
 import lk.gdse.ticketservice.service.VehicleServiceClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -24,6 +27,7 @@ public class TicketController {
     private UserServiceClient userServiceClient;
     @Autowired
     private TicketService ticketService;
+    private static final Logger logger = LoggerFactory.getLogger(TicketController.class);
     @GetMapping("/health")
     public String health(){
         return "Ticket Service is healthy";
@@ -40,7 +44,7 @@ public class TicketController {
             return ResponseEntity.badRequest().body("Vehicle not found");
         }
         ticketDTO.setTicketIssueDate(LocalDate.now());
-        ticketDTO.setTicketStatus(TicketStatus.OPEN);
+        ticketDTO.setTicketStatus(TicketStatus.UNPAID);
         ticketService.saveTicket(ticketDTO);
         return ResponseEntity.ok("Ticket saved successfully");
     }
@@ -66,7 +70,7 @@ public class TicketController {
         if (!vehicleServiceClient.isExitsVehicle(ticketDTO.getVehicleId())) {
             return ResponseEntity.badRequest().body("Vehicle not found");
         }
-        ticketDTO.setTicketStatus(TicketStatus.OPEN);
+        ticketDTO.setTicketStatus(TicketStatus.UNPAID);
         ticketDTO.setTicketIssueDate(LocalDate.now());
         ticketService.updateTicket(ticketDTO);
         return ResponseEntity.ok("Ticket updated successfully");
@@ -92,5 +96,18 @@ public class TicketController {
             return ResponseEntity.badRequest().body("Vehicle not found");
         }
         return ResponseEntity.ok(ticketService.getTicketsByVehicleId(vehicleId));
+    }
+    @GetMapping("/ticketExists/{ticketId}")
+    public ResponseEntity<?> isTicketExists(@PathVariable ("ticketId") String ticketId) {
+        logger.info("Checking ticket existence with ID: {}", ticketId);
+        try {
+            boolean isTicketExists = ticketService.isTicketExists(ticketId);
+            logger.info("Ticket Exists: {}", isTicketExists);
+            return ResponseEntity.ok(isTicketExists);
+        } catch (Exception exception) {
+            logger.error("Error checking ticket existence: ", exception);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Internal server error | Unable to check ticket existence.\nMore Details\n" + exception);
+        }
     }
 }

@@ -1,5 +1,6 @@
 package lk.gdse.ticketservice.service.impl;
 
+import lk.gdse.ticketservice.ENUM.TicketStatus;
 import lk.gdse.ticketservice.conversion.ConversionData;
 import lk.gdse.ticketservice.dto.TicketDTO;
 import lk.gdse.ticketservice.entity.Ticket;
@@ -65,5 +66,16 @@ public class TicketServiceImpl implements TicketService {
             tickeDTOs.add(conversionData.mapTo(ticket, TicketDTO.class));
         }
         return tickeDTOs;
+    }
+
+    @Override
+    public boolean isTicketExists(String ticketId) {
+        if (ticketRepository.existsById(ticketId)){
+            TicketDTO ticket = getTicket(ticketId);
+            ticket.setTicketStatus(TicketStatus.PAID);
+            updateTicket(ticket);
+            return true;
+        }
+        return false;
     }
 }
