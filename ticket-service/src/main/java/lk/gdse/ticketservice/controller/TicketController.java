@@ -40,7 +40,7 @@ public class TicketController {
             return ResponseEntity.badRequest().body("Vehicle not found");
         }
         ticketDTO.setTicketIssueDate(LocalDate.now());
-        ticketDTO.setTicketStatus(TicketStatus.UNPAID);
+        ticketDTO.setTicketStatus(TicketStatus.OPEN);
         ticketService.saveTicket(ticketDTO);
         return ResponseEntity.ok("Ticket saved successfully");
     }
@@ -66,7 +66,7 @@ public class TicketController {
         if (!vehicleServiceClient.isExitsVehicle(ticketDTO.getVehicleId())) {
             return ResponseEntity.badRequest().body("Vehicle not found");
         }
-        ticketDTO.setTicketStatus(TicketStatus.UNPAID);
+        ticketDTO.setTicketStatus(TicketStatus.OPEN);
         ticketDTO.setTicketIssueDate(LocalDate.now());
         ticketService.updateTicket(ticketDTO);
         return ResponseEntity.ok("Ticket updated successfully");
