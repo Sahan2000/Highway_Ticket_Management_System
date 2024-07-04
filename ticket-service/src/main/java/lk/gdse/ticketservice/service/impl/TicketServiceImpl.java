@@ -44,11 +44,6 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public void deleteTicket(String ticketId) {
-        ticketRepository.deleteById(ticketId);
-    }
-
-    @Override
     public List<TicketDTO> getTicketsByUserId(String userId) {
         List<TicketDTO> tickeDTOs = new ArrayList<>();
         List<Ticket> tickets = ticketRepository.findAllByUserId(userId);

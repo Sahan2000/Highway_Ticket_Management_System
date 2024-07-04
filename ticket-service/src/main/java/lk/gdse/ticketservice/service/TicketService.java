@@ -13,8 +13,6 @@ public interface TicketService {
 
     void updateTicket(TicketDTO ticketDTO);
 
-    void deleteTicket(String ticketId);
-
     List<TicketDTO> getTicketsByUserId(String userId);
 
     List<TicketDTO> getTicketsByVehicleId(String vehicleId);

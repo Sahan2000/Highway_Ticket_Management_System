@@ -74,12 +74,6 @@ public class TicketController {
         return ResponseEntity.ok("Ticket updated successfully");
     }
 
-    @DeleteMapping(value = "/{ticketId}")
-    public ResponseEntity<?> deleteTicket(@PathVariable ("ticketId") String ticketId){
-        ticketService.deleteTicket(ticketId);
-        return ResponseEntity.ok("Ticket deleted successfully");
-    }
-
     @GetMapping(value = "/user/{userId}")
     public ResponseEntity<?> getTicketsByUserId(@PathVariable ("userId") String userId){
         if (!userServiceClient.isExitsUser(userId)){
