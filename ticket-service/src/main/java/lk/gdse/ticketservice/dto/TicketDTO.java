@@ -1,5 +1,7 @@
 package lk.gdse.ticketservice.dto;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Null;
 import lk.gdse.ticketservice.ENUM.TicketStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,7 +16,9 @@ import java.util.Date;
 @Data
 @Builder
 public class TicketDTO {
+    @Null(message = "Id generate by  program")
     private String ticketId;
+    @NotNull(message = "ticket issue date cannot be a null")
     private LocalDate ticketIssueDate;
     private TicketStatus ticketStatus;
     private String vehicleId;

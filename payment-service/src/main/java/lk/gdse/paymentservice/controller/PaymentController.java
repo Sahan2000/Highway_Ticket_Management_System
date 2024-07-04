@@ -2,7 +2,7 @@ package lk.gdse.paymentservice.controller;
 
 import lk.gdse.paymentservice.dto.PaymentDTO;
 import lk.gdse.paymentservice.service.PaymentService;
-import lk.gdse.paymentservice.service.TicketServiceClient;
+import lk.gdse.paymentservice.client.TicketServiceClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package lk.gdse.paymentservice.service;
+package lk.gdse.paymentservice.client;
 
 public interface TicketServiceClient {
     boolean isExitsTicket(String id);
