@@ -33,6 +33,7 @@ public class VehicleController {
         if (!userServiceClient.isExitsUser(vehicleDTO.getUserId())) {
             return ResponseEntity.badRequest().body("User not found");
         }
+        vehicleDTO.setVehicleId(vehicleService.generateVehicleId());
         vehicleService.saveVehicle(vehicleDTO);
         return ResponseEntity.ok("Vehicle saved successfully");
     }

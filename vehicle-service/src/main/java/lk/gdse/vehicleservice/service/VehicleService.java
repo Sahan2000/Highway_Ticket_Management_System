@@ -10,6 +10,6 @@ public interface VehicleService {
     VehicleDTO getVehicle(String vehicleId);
     List<VehicleDTO> getAllVehicles();
     List<VehicleDTO> getVehicleByUserId(String userId);
-
+    String generateVehicleId();
     boolean isVehicleExists(String vehicleId);
 }

@@ -53,6 +53,15 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
+    public String generateVehicleId() {
+        Vehicle vehicle = vehicleServiceDao.findFirstByOrderByVehicleIdDesc();
+        if (vehicle == null) {
+            return "V0001";
+        }
+        return "V" + String.format("%04d", Integer.parseInt(vehicle.getVehicleId().substring(1)) + 1);
+    }
+
+    @Override
     public boolean isVehicleExists(String vehicleId) {
         return vehicleServiceDao.existsById(vehicleId);
     }

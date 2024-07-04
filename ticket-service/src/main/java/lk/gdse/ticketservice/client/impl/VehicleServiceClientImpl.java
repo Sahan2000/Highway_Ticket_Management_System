@@ -1,6 +1,6 @@
-package lk.gdse.ticketservice.service.impl;
+package lk.gdse.ticketservice.client.impl;
 
-import lk.gdse.ticketservice.service.VehicleServiceClient;
+import lk.gdse.ticketservice.client.VehicleServiceClient;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,6 +1,5 @@
 package lk.gdse.paymentservice.controller;
 
-import lk.gdse.paymentservice.ENUM.PaymentType;
 import lk.gdse.paymentservice.dto.PaymentDTO;
 import lk.gdse.paymentservice.service.PaymentService;
 import lk.gdse.paymentservice.service.TicketServiceClient;
@@ -9,8 +8,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import java.awt.*;
 import java.time.LocalDate;
 
 @RestController

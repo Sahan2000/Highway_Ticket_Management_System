@@ -3,8 +3,8 @@ package lk.gdse.ticketservice.controller;
 import lk.gdse.ticketservice.ENUM.TicketStatus;
 import lk.gdse.ticketservice.dto.TicketDTO;
 import lk.gdse.ticketservice.service.TicketService;
-import lk.gdse.ticketservice.service.UserServiceClient;
-import lk.gdse.ticketservice.service.VehicleServiceClient;
+import lk.gdse.ticketservice.client.UserServiceClient;
+import lk.gdse.ticketservice.client.VehicleServiceClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +15,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.Locale;
 
 @RestController
 @RequestMapping("api/v1/ticket")
